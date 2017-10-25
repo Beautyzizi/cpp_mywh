@@ -3,8 +3,8 @@
 #include<vector>
 #include"LinkStack.h"
 using namespace std;
-string change(string zexpress);//ÖĞ×º±í´ïÊ½±äºó×º±í´ïÊ½
-bool opIsHigher(char a, char c)//±È½Ï²Ù×÷·ûµÄÓÅÏÈ¼¶  ²»»á°ÑÕâ¸öĞ´µ½ÀàÖĞ
+string change(string zexpress);//ä¸­ç¼€è¡¨è¾¾å¼å˜åç¼€è¡¨è¾¾å¼
+bool opIsHigher(char a, char c)//æ¯”è¾ƒæ“ä½œç¬¦çš„ä¼˜å…ˆçº§
 {
 	switch (a)
 	{
@@ -23,27 +23,27 @@ bool isOperator(char c) {
 }
 string  change(string zexpress)
 {
-	LinkStack<char>operators, hexpress;//±£´æ²Ù×÷·ûºÍºó×º±í´ïÊ½;
+	LinkStack<char>operators, hexpress;//ä¿å­˜æ“ä½œç¬¦å’Œåç¼€è¡¨è¾¾å¼;
 	for(char a:zexpress)
 	{
-		if (isdigit(a))//Èç¹ûÊÇÊı×Ö½øÕ»
+		if (isdigit(a))//å¦‚æœæ˜¯æ•°å­—è¿›æ ˆ
 		{
 			hexpress.push(a);
 			continue;
 		}
-		else if (isOperator(a))//Èç¹ûÊÇ²Ù×÷·û
+		else if (isOperator(a))//å¦‚æœæ˜¯æ“ä½œç¬¦
 		{
 			if (operators.isEmpty() || operators.top() == '(')
 				operators.push(a);
-			else if (a=='*'||a=='/')//ÎŞÂÛÕ»µ×Ê±Ê²Ã´ÔËËã·û¶¼²»»á±È³Ë³ıÓÅÏÈ
+			else if (a=='*'||a=='/')//æ— è®ºæ ˆåº•æ—¶ä»€ä¹ˆè¿ç®—ç¬¦éƒ½ä¸ä¼šæ¯”ä¹˜é™¤ä¼˜å…ˆ
 				operators.push(a);
-			else //Õ»¶¥ÔªËØÒÀ´Î³öÕ»²¢Êä³ö£¬²¢½«µ±Ç°·ûºÅ½øÕ»£¬
+			else //æ ˆé¡¶å…ƒç´ ä¾æ¬¡å‡ºæ ˆå¹¶è¾“å‡ºï¼Œå¹¶å°†å½“å‰ç¬¦å·è¿›æ ˆï¼Œ
 			{
 				while (1)
 				{
-					hexpress.push(operators.top());//³öÕ»..
-					operators.pop();//É¾³ı..
-					if (operators.isEmpty() || operators.top() == '(') //ÈôÕ»¿Õ»òÕ»¶¥Îª(
+					hexpress.push(operators.top());//å‡ºæ ˆ..
+					operators.pop();//åˆ é™¤..
+					if (operators.isEmpty() || operators.top() == '(') //è‹¥æ ˆç©ºæˆ–æ ˆé¡¶ä¸º(
 					{
 						operators.push(a); break;
 					}
@@ -58,20 +58,20 @@ string  change(string zexpress)
 			operators.push(a);
 		else if (a == ')')
 		{
-			while (operators.top() != '(')//½«À¨ºÅÖĞµÄÔËËã·ûÒÀ´Î³öÕ»
+			while (operators.top() != '(')//å°†æ‹¬å·ä¸­çš„è¿ç®—ç¬¦ä¾æ¬¡å‡ºæ ˆ
 			{
 				hexpress.push(operators.top());
 				operators.pop();
 			}
-			operators.pop();//½«)³öÕ»
+			operators.pop();//å°†)å‡ºæ ˆ
 		}
 		else
 		{
-			cout << "´íÎó±í´ïÊ½." << endl;
+			cout << "é”™è¯¯è¡¨è¾¾å¼." << endl;
 			exit(-1);
 		}
 	}
-	while (!operators.isEmpty()) {//Õ»ÖĞ½øÈëÓÅÏÈ¼¶ÏàÍ¬µÄÔËËã·û²»»á³öÕ»,ËùÒÔÓÃwhile³öÕ»
+	while (!operators.isEmpty()) {//æ ˆä¸­è¿›å…¥ä¼˜å…ˆçº§ç›¸åŒçš„è¿ç®—ç¬¦ä¸ä¼šå‡ºæ ˆ,æ‰€ä»¥ç”¨whileå‡ºæ ˆ
 		hexpress.push(operators.top());
 		operators.pop();
 	}
@@ -91,7 +91,7 @@ int caculation(string hexpress)
 	{
 		if (isdigit(c))
 		{
-			number.push(c-'0');//ÊıÖµ0:0x00£¬×Ö·û'0':0x30
+			number.push(c-'0');//æ•°å€¼0:0x00ï¼Œå­—ç¬¦'0':0x30
 			cout << number.top() << endl;
 		}
 		else if (isOperator(c))
@@ -117,10 +117,10 @@ int caculation(string hexpress)
 int main()
 {
 	string a;
-	cout << "ÊäÈëÒª¼ÆËãµÄÖµ" << endl;
+	cout << "è¾“å…¥è¦è®¡ç®—çš„å€¼" << endl;
 	cin >> a;
 	a = change(a);
-	cout <<"ºó×º±í´ïÊ½Îª:"<< a << endl;
-	cout <<"½á¹ûÎª:"<<caculation(a)<<endl;
+	cout <<"åç¼€è¡¨è¾¾å¼ä¸º:"<< a << endl;
+	cout <<"ç»“æœä¸º:"<<caculation(a)<<endl;
 	system("pause");
 }
