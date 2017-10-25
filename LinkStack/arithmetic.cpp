@@ -1,3 +1,7 @@
+/*只实现了简单的四则运算..练习练习栈.做之前我还美滋滋以为可以两位数..
+结果以为for(char a:hexpress),如果是两位数也会单独被压到栈中,还想解决浮点数的问题.
+感觉这两个问题应该靠栈解决不了.
+*/
 #include<iostream>
 #include<string>
 #include<vector>
